@@ -7,10 +7,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to a react project</h1>
-        </header>
-
         <Router>
           <Route exact path="/" component={ConfigPage} />
         </Router>
