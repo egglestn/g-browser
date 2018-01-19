@@ -1,20 +1,17 @@
 import React from 'react'
 import ClientForm from '../../components/ClientForm'
+import Api from '../../components/Api'
 
 
 class ConfigPage extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       clientKey: null,
-      apiKey: '282752980559'
-
     };
   }
 
   updateClientKey = (clientKeyValue) => {
-    console.log(clientKeyValue)
     this.setState({clientKey: clientKeyValue});
   }
 
@@ -23,6 +20,7 @@ class ConfigPage extends React.Component {
       <div>
         <h2>Config Page!</h2>
         <ClientForm updateClientKey={this.updateClientKey.bind(this)}/>
+        <Api clientKey={this.state.clientKey}/>
       </div>
     )
   }
