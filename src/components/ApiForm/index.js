@@ -5,8 +5,8 @@ class ApiForm extends React.Component {
     super(props);
     this.state = {value: ''};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -16,6 +16,7 @@ class ApiForm extends React.Component {
   handleSubmit(event) {
     alert('A key was submitted: ' + this.state.value);
     event.preventDefault();
+    this.props.updateApiKey(this.state.value);
   }
 
   render() {
@@ -28,10 +29,6 @@ class ApiForm extends React.Component {
         <input type="submit" value="Submit" />
       </form>
     );
-  }
-
-  getApiKey = () => {
-    return this.state.value
   }
 }
 
