@@ -29,6 +29,10 @@ class ApiForm extends React.Component {
       </form>
     );
   }
+
+  getApiKey = () => {
+    return this.state.value
+  }
 }
 
 export default ApiForm
