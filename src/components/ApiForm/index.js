@@ -3,20 +3,20 @@ import React from 'react'
 class ApiForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {apiKey: ''};
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({apiKey: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('A key was submitted: ' + this.state.value);
+    alert('A key was submitted: ' + this.state.apiKey);
     event.preventDefault();
-    this.props.updateApiKey(this.state.value);
+    this.props.updateApiKey(this.state.apiKey);
   }
 
   render() {
