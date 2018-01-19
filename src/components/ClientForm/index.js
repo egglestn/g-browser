@@ -1,29 +1,29 @@
 import React from 'react'
 
-class ApiForm extends React.Component {
+class ClientForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {apiKey: ''};
+    this.state = {clientKey: ''};
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({apiKey: event.target.value});
+    this.setState({clientKey: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('A key was submitted: ' + this.state.apiKey);
+    alert('A key was submitted: ' + this.state.clientKey);
     event.preventDefault();
-    this.props.updateApiKey(this.state.apiKey);
+    this.props.updateClientKey(this.state.clientKey);
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Google Api Key:
+          Google Client Id:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
@@ -32,4 +32,4 @@ class ApiForm extends React.Component {
   }
 }
 
-export default ApiForm
+export default ClientForm

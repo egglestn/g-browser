@@ -1,5 +1,5 @@
 import React from 'react'
-import ApiForm from '../../components/ApiForm'
+import ClientForm from '../../components/ClientForm'
 
 
 class ConfigPage extends React.Component {
@@ -7,20 +7,22 @@ class ConfigPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiKey: null
+      clientKey: null,
+      apiKey: '282752980559'
+
     };
   }
 
-  updateApiKey = (apiKeyValue) => {
-    console.log(apiKeyValue)
-    this.setState({apiKey: apiKeyValue});
+  updateClientKey = (clientKeyValue) => {
+    console.log(clientKeyValue)
+    this.setState({clientKey: clientKeyValue});
   }
 
   render() {
     return (
       <div>
         <h2>Config Page!</h2>
-        <ApiForm updateApiKey={this.updateApiKey.bind(this)}/>
+        <ClientForm updateClientKey={this.updateClientKey.bind(this)}/>
       </div>
     )
   }
