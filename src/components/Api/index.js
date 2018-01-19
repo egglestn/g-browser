@@ -9,7 +9,7 @@ class Api extends React.Component {
         // Authorization scopes required by the API; multiple scopes can be
         // included, separated by spaces.
         SCOPES: 'https://www.googleapis.com/auth/drive.metadata.readonly',
-        API_KEY: '282752980559'
+        API_KEY: 'TODO'
 
     }
   }
