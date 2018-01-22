@@ -12,6 +12,7 @@ class ConfigPage extends React.Component {
   }
 
   updateClientKey = (clientKeyValue) => {
+    console.log("Update client key")
     this.setState({clientKey: clientKeyValue});
   }
 
