@@ -1,5 +1,6 @@
 /* global gapi */
 import React from 'react'
+import LoginButton from '../LoginButton'
 
 class Api extends React.Component {
   constructor(props) {
@@ -33,9 +34,26 @@ class Api extends React.Component {
     script.onload = () => {
       gapi.load('client', () => {
         gapi.client.setApiKey(this.state.API_KEY);
-        gapi.client.load('youtube', 'v3', () => {
-          this.setState({ gapiReady: true })
-        })
+        gapi.load('auth2', () => {
+          // Retrieve the singleton for the GoogleAuth library and set up the client.
+          this.auth2 = gapi.auth2.init({
+            client_id: this.state.API_KEY + '-bntufk9oeftfq204f9fu99ou2faou070.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin',
+          });
+
+          console.log("Have loaded auth 2. Possibly")
+          console.log(this.state.API_KEY)
+          console.log(this.auth2)
+          console.log(this.refs.googleButton)
+
+          this.auth2.attachClickHandler(this.refs.googleButton, {},
+            (googleUser) => {
+                this.googleLogin(googleUser.getBasicProfile());
+            }, (error) => {
+                console.error(error)
+            });
+        });
+        this.setState({ gapiReady: true })
       })
     }
 
@@ -43,11 +61,13 @@ class Api extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('google-loaded', this.renderGoogleLoginButton);
     this.loadGApi();
   }
 
   render() {
     if (this.state.gapiReady) {
+      //this.listFiles()
       return (<h1>GAPI is loaded and ready to use.</h1>)
     } else {
       return (<h1>GAPI did not load</h1>)
@@ -142,6 +162,19 @@ class Api extends React.Component {
         this.appendPre('No files found.');
       }
     });
+  }*/
+
+  /*listFiles = () => {
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET','https://www.googleapis.com/drive/v2/files');
+
+    var mysearch = encodeURIComponent("q=trashed=false");
+
+    xhr.open('GET',"https://www.googleapis.com/drive/v2/files?" +mysearch,true);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.onload = function() { handleResponse(xhr.responseText); };
+    xhr.onerror = function() { handleResponse(null); };
+    xhr.send();
   }*/
 }
 
