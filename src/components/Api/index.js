@@ -14,28 +14,58 @@ class Api extends React.Component {
     }
   }
 
-  render() {
+  /*render() {
     console.log("Init g api client")
     console.log(this.props.clientKey)
 
-    this.handleClientLoad()
+    //gapi.load('client', this.initClient());
 
-    console.log("Might have loaded a g client")
+    //this.handleClientLoad()
+
+    console.log("Have not loaded a g client")
     return ("")
+  }*/
+
+  loadGApi() {
+    const script = document.createElement("script")
+    script.src = "https://apis.google.com/js/client.js"
+
+    script.onload = () => {
+      gapi.load('client', () => {
+        gapi.client.setApiKey(this.state.API_KEY);
+        gapi.client.load('youtube', 'v3', () => {
+          this.setState({ gapiReady: true })
+        })
+      })
+    }
+
+    document.body.appendChild(script)
+  }
+
+  componentDidMount() {
+    this.loadGApi();
+  }
+
+  render() {
+    if (this.state.gapiReady) {
+      return (<h1>GAPI is loaded and ready to use.</h1>)
+    } else {
+      return (<h1>GAPI did not load</h1>)
+    }
   }
 
   /**
    *  On load, called to load the auth2 library and API client library.
    */
-  handleClientLoad = () => {
+/*  handleClientLoad = () => {
     gapi.load('client:auth2', this.initClient());
-  }
+  } */
 
   /**
    *  Initializes the API client library and sets up sign-in state
    *  listeners.
    */
-  initClient = () => {
+ /* initClient = () => {
     gapi.client.init({
       apiKey: this.state.API_KEY,
       //clientId: this.state.CLIENT_ID,
@@ -56,7 +86,7 @@ class Api extends React.Component {
    *  Called when the signed in status changes, to update the UI
    *  appropriately. After a sign-in, the API is called.
    */
-  updateSigninStatus = (isSignedIn) => {
+ /* updateSigninStatus = (isSignedIn) => {
     if (isSignedIn) {
       this.authorizeButton.style.display = 'none';
       this.signoutButton.style.display = 'block';
@@ -65,21 +95,21 @@ class Api extends React.Component {
       this.authorizeButton.style.display = 'block';
       this.signoutButton.style.display = 'none';
     }
-  }
+  }*/
 
   /**
    *  Sign in the user upon button click.
    */
-  handleAuthClick = (event) => {
+ /* handleAuthClick = (event) => {
     gapi.auth2.getAuthInstance().signIn();
-  }
+  }*/
 
   /**
    *  Sign out the user upon button click.
    */
-  handleSignoutClick = (event) => {
+ /* handleSignoutClick = (event) => {
     gapi.auth2.getAuthInstance().signOut();
-  }
+  }*/
 
   /**
    * Append a pre element to the body containing the given message
@@ -87,16 +117,16 @@ class Api extends React.Component {
    *
    * @param {string} message Text to be placed in pre element.
    */
-   appendPre = (message) => {
+ /*  appendPre = (message) => {
     var pre = document.getElementById('content');
     var textContent = document.createTextNode(message + '\n');
     pre.appendChild(textContent);
-  }
+  }*/
 
   /**
    * Print files.
    */
-  listFiles = () => {
+  /*listFiles = () => {
     gapi.client.drive.files.list({
       'pageSize': 10,
       'fields': "nextPageToken, files(id, name)"
@@ -112,7 +142,7 @@ class Api extends React.Component {
         this.appendPre('No files found.');
       }
     });
-  }
+  }*/
 }
 
 export default Api
