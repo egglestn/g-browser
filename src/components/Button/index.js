@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Button = ({
-  title = 'Button'
+  title = 'List files'
 }) => {
   return React.createElement(
     'button'
