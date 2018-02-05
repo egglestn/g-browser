@@ -66,6 +66,7 @@ class Api extends React.Component {
   }
 
   render() {
+    <LoginButton/>
     if (this.state.gapiReady) {
       //this.listFiles()
       return (<h1>GAPI is loaded and ready to use.</h1>)

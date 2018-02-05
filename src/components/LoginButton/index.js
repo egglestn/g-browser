@@ -24,7 +24,7 @@ class LoginButton extends React.Component {
   }
 
   render = () => {
-    let displayText = "Sign in with Google";
+    //let displayText = "Sign in with Google";
     return (
       <div class="g-signin2" data-onsuccess="onSignIn"></div>
     );
